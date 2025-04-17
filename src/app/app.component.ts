@@ -1,8 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { ApiService } from './api.service';
 import { Task } from './tasks.model';
-import { map } from 'rxjs';
 import { NgFor } from '@angular/common';
 
 @Component({
@@ -25,7 +23,6 @@ export class AppComponent implements OnInit {
     this.#apiService.getTaks().subscribe((tasks) => {
       this.tasks = tasks;
     this.totalPages = Math.ceil(this.tasks.length / this.pageSize);
-
       this.updatePaginatedTasks();
     });
   }
