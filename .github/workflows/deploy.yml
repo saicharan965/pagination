@@ -3,7 +3,7 @@ name: CI & Deploy Angular App to GitHub Pages
 on:
   push:
     branches:
-      - master  # or 'main' if that's your default
+      - master # or 'main' if that's your default
   pull_request:
   workflow_dispatch:
 
@@ -50,7 +50,7 @@ jobs:
       - name: 🚀 Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/pagination
+          path: dist/pagination/browser
 
   deploy:
     needs: build-and-deploy
