@@ -7,6 +7,7 @@
   </div>
 </nav>
 
+@if(paginatedTasks && paginatedTasks.length > 0) {
 <div class="pagination d-flex justify-content-center align-items-center m-4 gap-3">
   <button class="btn btn-sm btn-outline-primary" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
     Previous
@@ -56,3 +57,11 @@
     Next
   </button>
 </div>
+}
+@else {
+<div class="spinner-container d-flex justify-content-center align-items-center">
+  <div class="spinner-border text-dark" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+}
