@@ -2,10 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ApiService } from './api.service';
 import { Task } from './tasks.model';
 import { NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [NgFor],
+  imports: [NgFor, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.#apiService.getTaks().subscribe((tasks) => {
       this.tasks = tasks;
-    this.totalPages = Math.ceil(this.tasks.length / this.pageSize);
+      this.totalPages = Math.ceil(this.tasks.length / this.pageSize);
       this.updatePaginatedTasks();
     });
   }
@@ -32,9 +33,11 @@ export class AppComponent implements OnInit {
     this.paginatedTasks = this.tasks.slice(startIndex, startIndex + this.pageSize);
   }
 
-  goToPage(page: number): void {
-    this.currentPage = page;
-    this.updatePaginatedTasks();
+  goToPage(page: number | null): void {
+    if (page != null) {
+      this.currentPage = page;
+      this.updatePaginatedTasks();
+    }
   }
 }
 

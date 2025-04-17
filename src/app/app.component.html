@@ -1,12 +1,22 @@
-<h1 class="text-center my-4">Task Manager</h1>
+<nav class="navbar navbar-light bg-success">
+  <div class="container-fluid">
+    <a class="navbar-brand">
+      <span class="badge bg-warning text-black">TASK MANAGER</span>
+    </a>
+    <!-- <button class="btn btn-warning">Home</button> -->
+  </div>
+</nav>
 
-<div class="pagination d-flex justify-content-center align-items-center mb-4 gap-3">
+<div class="pagination d-flex justify-content-center align-items-center m-4 gap-3">
   <button class="btn btn-sm btn-outline-primary" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
     Previous
   </button>
 
-  <span class="fw-bold">
-    Page <span class="badge bg-primary">{{ currentPage }}</span> of
+  <span class="fw-bold d-flex align-items-center gap-2">
+    Page
+    <input class="form-control form-control-sm" type="number" [(ngModel)]="currentPage"
+      (ngModelChange)="goToPage(currentPage)" />
+    of
     <span class="badge bg-primary">{{ totalPages }}</span>
   </span>
 
@@ -28,13 +38,16 @@
   }
 </div>
 
-<div class="pagination d-flex justify-content-center align-items-center mt-4 gap-3">
+<div class="pagination d-flex justify-content-center align-items-center m-4 gap-3">
   <button class="btn btn-sm btn-outline-primary" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
     Previous
   </button>
 
-  <span class="fw-bold">
-    Page <span class="badge bg-primary">{{ currentPage }}</span> of
+  <span class="fw-bold d-flex align-items-center gap-2">
+    Page
+    <input class="form-control form-control-sm" type="number" [(ngModel)]="currentPage"
+      (ngModelChange)="goToPage(currentPage)" />
+    of
     <span class="badge bg-primary">{{ totalPages }}</span>
   </span>
 
