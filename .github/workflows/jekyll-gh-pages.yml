@@ -2,9 +2,7 @@ name: 🚀 Deploy Angular App to GitHub Pages
 
 on:
   push:
-    branches:
-      - main # change this if your default branch is 'master'
-
+    branches: [master]
   workflow_dispatch:
 
 permissions:
@@ -19,22 +17,23 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
 
-      - name: Setup Node.js
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v3
+
+      - name: 🛠 Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: npm ci
 
-      - name: Build Angular app
+      - name: 🏗 Build Angular App
         run: npm run build -- --configuration production
 
-      - name: Upload artifact
+      - name: 📤 Upload build artifacts
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist/pagination
@@ -45,7 +44,8 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
-      - name: Deploy to GitHub Pages
+      - name: 🚀 Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
