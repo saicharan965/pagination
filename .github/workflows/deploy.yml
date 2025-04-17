@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: angular-build
-          path: dist/pagination
+          path: dist/pagination/browser
 
       - name: 🚀 Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
