@@ -1,44 +1,14 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { ApiService } from './api.service';
-import { Task } from './tasks.model';
-import { NgFor } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [NgFor, FormsModule],
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
-  title = 'pagination';
-  protected tasks!: Task[];
-  protected paginatedTasks!: Task[];
-  protected currentPage = 1;
-  protected pageSize = 10;
-  protected totalPages!: number;
+export class AppComponent {
 
-  #apiService = inject(ApiService);
-
-  ngOnInit(): void {
-    this.#apiService.getTaks().subscribe((tasks) => {
-      this.tasks = tasks;
-      this.totalPages = Math.ceil(this.tasks.length / this.pageSize);
-      this.updatePaginatedTasks();
-    });
-  }
-
-  updatePaginatedTasks(): void {
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    this.paginatedTasks = this.tasks.slice(startIndex, startIndex + this.pageSize);
-  }
-
-  goToPage(page: number | null): void {
-    if (page != null) {
-      this.currentPage = page;
-      this.updatePaginatedTasks();
-    }
-  }
 }
 
 

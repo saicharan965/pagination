@@ -3,65 +3,10 @@
     <a class="navbar-brand">
       <span class="badge bg-warning text-black">TASK MANAGER</span>
     </a>
-    <!-- <button class="btn btn-warning">Home</button> -->
+    <span class="d-flex gap-3">
+      <button class="btn btn-warning" routerLink="create">Create</button>
+      <button class="btn btn-warning">Tasks</button>
+    </span>
   </div>
 </nav>
-
-@if(paginatedTasks && paginatedTasks.length > 0) {
-<div class="pagination d-flex justify-content-center align-items-center m-4 gap-3">
-  <button class="btn btn-sm btn-outline-primary" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
-    Previous
-  </button>
-
-  <span class="fw-bold d-flex align-items-center gap-2">
-    Page
-    <input class="form-control form-control-sm" type="number" [(ngModel)]="currentPage"
-      (ngModelChange)="goToPage(currentPage)" />
-    of
-    <span class="badge bg-primary">{{ totalPages }}</span>
-  </span>
-
-  <button class="btn btn-sm btn-outline-primary" (click)="goToPage(currentPage + 1)"
-    [disabled]="currentPage >= totalPages">
-    Next
-  </button>
-</div>
-
-<div class="d-flex flex-wrap justify-content-center gap-3">
-  @for (item of paginatedTasks; track $index) {
-  <div class="task bg-light border rounded p-3" style="width: 250px; background-color: bisque;">
-    <h5 class="text-wrap text-primary">Title: {{ item.title }}</h5>
-    <hr>
-    <p class="mb-1"><strong>Task ID:</strong> {{ item.id }}</p>
-    <p class="mb-1"><strong>User ID:</strong> {{ item.userId }}</p>
-    <p class="mb-0"><strong>Completed:</strong> {{ item.completed }}</p>
-  </div>
-  }
-</div>
-
-<div class="pagination d-flex justify-content-center align-items-center m-4 gap-3">
-  <button class="btn btn-sm btn-outline-primary" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
-    Previous
-  </button>
-
-  <span class="fw-bold d-flex align-items-center gap-2">
-    Page
-    <input class="form-control form-control-sm" type="number" [(ngModel)]="currentPage"
-      (ngModelChange)="goToPage(currentPage)" />
-    of
-    <span class="badge bg-primary">{{ totalPages }}</span>
-  </span>
-
-  <button class="btn btn-sm btn-outline-primary" (click)="goToPage(currentPage + 1)"
-    [disabled]="currentPage >= totalPages">
-    Next
-  </button>
-</div>
-}
-@else {
-<div class="spinner-container d-flex justify-content-center align-items-center">
-  <div class="spinner-border text-dark" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-</div>
-}
+<router-outlet></router-outlet>

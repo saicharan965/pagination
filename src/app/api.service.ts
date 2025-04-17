@@ -12,4 +12,8 @@ export class ApiService {
   getTaks(): Observable<Task[]> {
     return this.#http.get<Task[]>('https://jsonplaceholder.typicode.com/todos');
   }
+
+  createTask(task: Task): Observable<Task> {
+    return this.#http.post<Task>('https://jsonplaceholder.typicode.com/todos', task);
+  }
 }

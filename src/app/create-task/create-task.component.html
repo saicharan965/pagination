@@ -1,0 +1,43 @@
+<div class="card container my-3">
+  <h2 class="card-title mb-0 mt-1 p-0">Create Task</h2>
+  <hr>
+  <form [formGroup]="createTaskFormGroup">
+    <div class="mb-3">
+      <div class="d-flex">
+        <label for="exampleFormControlInput1" class="form-label w-25">Task title</label>
+        <input type="text" [ngClass]="{
+          'is-invalid': createTaskFormGroup.get('title')?.invalid && createTaskFormGroup.get('title')?.touched
+        }" class="form-control w-75" id="titleInput" formControlName="title">
+      </div>
+
+      <small class="text-danger d-block">
+        <ng-container *ngIf="createTaskFormGroup.get('title')?.invalid && createTaskFormGroup.get('title')?.touched">
+          <ng-container *ngIf="createTaskFormGroup.get('title')?.errors?.['required']">Title is required</ng-container>
+          <ng-container *ngIf="createTaskFormGroup.get('title')?.errors?.['minlength']">Title must be at least 3
+            characters long</ng-container>
+        </ng-container>
+      </small>
+
+    </div>
+
+    <div class="mb-3 d-flex">
+      <label for="exampleFormControlInput1" class="form-label w-25">User Id</label>
+      <input type="number" class="form-control w-75" id="userIdInput" formControlName="userId">
+    </div>
+
+    <div class="mb-3 d-flex">
+      <label for="exampleFormControlInput1" class="form-label w-25">Task Id</label>
+      <input type="number" class="form-control w-75" id="taskIdInput" formControlName="taskId">
+    </div>
+
+    <div class="mb-3 d-flex">
+      <label for="exampleFormControlInput1" class="form-label w-25">Completed</label>
+      <input type="checkbox" class="form-check-input" id="isCompletedInput" formControlName="completed">
+    </div>
+  </form>
+  <hr>
+
+  <div class="d-flex justify-content-center mb-2">
+    <button type="submit" class="btn btn-outline-primary" (click)="createTask()">Create</button>
+  </div>
+</div>
